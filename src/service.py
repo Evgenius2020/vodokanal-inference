@@ -15,9 +15,9 @@ try:
     preprocessor = \
         mlflow.sklearn.load_model(f"runs:/{preprocessors[0].info.run_id}/model")
 
-    # Get model with lowest RMSE.
+    # Get model with lowest f1.
     runs = mlflow_client.search_runs(
-        ["0"], "", order_by=["metrics.rmse"], max_results=1)
+        ["0"], "", order_by=["metrics.f1 DESC"], max_results=1)
     model = mlflow.pyfunc.load_model(f"runs:/{runs[0].info.run_id}/model")
 
     print('Model loaded!')
